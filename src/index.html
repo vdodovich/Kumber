@@ -18,7 +18,10 @@
         <section class="sign-form">
             <h3>Реєстрація</h3>
             <input type="text" class="login-signup" placeholder="Введіть логін">
+            <input type="text" class="firstname-signup" placeholder="Введіть ваше ім'я">
+            <input type="text" class="lastname-signup" placeholder="Введіть ваше прізвище">
             <input type="text" class="email-signup" placeholder="Введіть email">
+            <input type="text" class="age-signup" placeholder="Введіть ваш вік" onkeyup="return onlyNumbersInputPress(this)" maxlength="2">
             <input type="password" class="password-signup" placeholder="Введіть пароль">
             <input type="password"  class="password-verify-signup" placeholder="Повторний пароль">
             <button class="do-signup" onclick="signUpClick()">Зареєструватись</button>

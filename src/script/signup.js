@@ -6,11 +6,18 @@ function signUpClick() {
     let email          = $("input.email-signup").val();
     let password       = $("input.password-signup").val();
     let passwordVerify = $("input.password-verify-signup").val();
+    let firstname      = $("input.firstname-signup").val();
+    let lastname       = $("input.lastname-signup").val();
+    let age            = $("input.age-signup").val();
 
-    if (nonEmpty(login, email, password, passwordVerify)
+
+    if (nonEmpty(login, email, password, passwordVerify, age, firstname, lastname)
         && loginValid(login)
         && passwordValid(password)
         && emailValid(email)
+        && ageValid(age)
+        && firstNameValid(firstname)
+        && lastNameValid(lastname)
         && passwordValidCheck(password, passwordVerify)) {
             console.log("All valid, start request to signin...");
             $.ajax({
@@ -19,8 +26,11 @@ function signUpClick() {
                 dataType: "json",
                 data: {
                     login: login,
-                    email: email,
-                    password: password
+                    password: password,
+                    firstname: firstname,
+                    lastname: lastname,
+                    age: age,
+                    email: email
                 },
                 success: function (answer) {
                     console.log(answer);
@@ -74,7 +84,17 @@ function signInClick() {
 function errorShow(error) {
     alert (error);
 }
-function nonEmpty(login, email, password, passwordVerify) {
+function onlyNumbersInputPress(input) {
+    let value = input.value;
+    let rep = /[-\.;":'a-zA-Zа-яА-Я]/;
+    if (rep.test(value)) {
+        value = value.replace(rep, '');
+        input.value = value;
+    }
+}
+function nonEmpty(login, email, password, passwordVerify, age, firstname, lastname) {
+
+
     if (!login.length) {
         console.error("Empty login!");
         let error = "Ви не ввели логін!";
@@ -96,6 +116,28 @@ function nonEmpty(login, email, password, passwordVerify) {
     else if (!passwordVerify.length) {
         console.error("Empty password verify!");
         let error = "Ви не ввели повторний пароль!";
+        errorShow(error);
+        return false;
+    }
+
+    else if (!age.length) {
+        console.error("Empty age!");
+        let error = "Ви не ввели вік!";
+        errorShow(error);
+        return false;
+    }
+
+
+    else if (!firstname.length) {
+        console.error("Empty firstname!");
+        let error = "Ви не ввели імені!";
+        errorShow(error);
+        return false;
+    }
+
+    else if (!lastname.length) {
+        console.error("Empty lastname!");
+        let error = "Ви не ввели прізвище!";
         errorShow(error);
         return false;
     }
@@ -162,4 +204,79 @@ function passwordValidCheck(password, passwordVerify) {
         return false;
     }
     else return true;
+}
+function ageValid(age) {
+    if (age.length>2) {
+        console.error("Age lenght > 2!");
+        let error = "Некоректний вік";
+        errorShow(error);
+        return false;
+    }
+
+    else if (!isNumeric(age)){
+        console.error("Invalid age!");
+        let error = "Вік містить недопустимі символи!";
+        errorShow(error);
+        return false;
+    }
+
+
+    else return true;
+}
+
+function firstNameValid(firstname) {
+    let pattern = /^.*[^A-zА-яЁё].*$/;
+
+    if (firstname.length > 10) {
+        console.error("Firstname lenght > 10!");
+        let error = "Ім'я повинне містити не більше 10 символів";
+        errorShow(error);
+        return false;
+    }
+
+    else if (firstname.length<2) {
+        console.error("Firstname lenght < 2!");
+        let error = "Ім'я повинне містити не менше 2 символів";
+        errorShow(error);
+        return false;
+    }
+
+    else if (pattern.test(firstname)){
+        console.error("Firstname invalid!");
+        let error = "Ім'я містить недопустимі символи!";
+        errorShow(error);
+        return false;
+    }
+    else return true;
+}
+
+function lastNameValid(lastname) {
+    let pattern = /^.*[^A-zА-яЁё].*$/;
+
+    if (lastname.length > 10) {
+        console.error("Lastname lenght > 10!");
+        let error = "Прізвище повинне містити не більше 10 символів";
+        errorShow(error);
+        return false;
+    }
+
+    else if (lastname.length<2) {
+        console.error("Lastname lenght < 2!");
+        let error = "Прізвище повинне містити не менше 2 символів";
+        errorShow(error);
+        return false;
+    }
+
+    else if (pattern.test(lastname)){
+        console.error("Lastname invalid!");
+        let error = "Прізвище містить недопустимі символи!";
+        errorShow(error);
+        return false;
+    }
+    else return true;
+}
+
+
+function isNumeric(value) {
+    return !isNaN(parseFloat(value)) && isFinite (value);
 }

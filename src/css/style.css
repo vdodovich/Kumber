@@ -66,8 +66,7 @@ button {
     min-height: 600px;
     width: 50%;
     display: flex;
-    justify-content: space-between;
-    overflow: auto; }
+    justify-content: space-between; }
     .sign .sign-box .sign-form {
       background-color: #fff;
       padding: 1rem 1.8rem;
@@ -87,11 +86,16 @@ button {
         align-self: flex-start; }
 
 @media only screen and (max-width: 768px) {
-  .sign .sign-box {
-    width: 100%;
-    flex-direction: column;
-    justify-content: flex-start; }
-    .sign .sign-box .sign-form {
-      margin-top: 2rem; }
-    .sign .sign-box .sm-position-sign-in {
+  .sign {
+    min-height: 0;
+    height: 100%; }
+    .sign .sign-box {
+      min-height: 0;
+      height: auto;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-bottom: 2rem; }
+      .sign .sign-box .sign-form {
+        margin-top: 2rem; }
+    .sign .sm-position-sign-in {
       order: -1; } }

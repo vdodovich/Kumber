@@ -1,18 +1,21 @@
 @media only screen and (max-width: 768px) {
 .sign {
+  min-height: 0;
+  height: 100%;
   .sign-box {
-    width: 100%;
-    flex-direction:column;
+    min-height: 0;
+    height: auto;
+    flex-direction: column;
     justify-content:flex-start;
+    margin-bottom: 2rem;
 
     .sign-form {
-      margin-top: 2rem;
+      margin-top:2rem;
     }
+  }
 
-   .sm-position-sign-in{
-     order: -1;
-   }
-
+  .sm-position-sign-in {
+    order: -1;
   }
 }
 }

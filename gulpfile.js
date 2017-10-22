@@ -1,5 +1,5 @@
 let gulp                =  require ("gulp");
-let gulpLess            =  require ("gulp-less");
+let gulpSass            =  require ("gulp-sass");
 let gulpAutoprefixer    =  require ("gulp-autoprefixer");
 let browserSync         =  require ("browser-sync");
 let gulpConcat          =  require ("gulp-concat");        // Обєднання файлів
@@ -11,24 +11,24 @@ let gulpUglifyjs        =  require ("gulp-uglifyes");      // Мініфікат
 
 
 
-gulp.task('less', function () {
-    return gulp.src('src/less/main.less')
+gulp.task('scss', function () {
+    return gulp.src('src/scss/main.scss')
         .pipe(gulpAutoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {cascade:true}))
         .pipe(gulpConcat("style.css"))
-        .pipe(gulpLess())
+        .pipe(gulpSass())
         .pipe(gulp.dest('src/css'))
         .pipe(browserSync.reload({stream:true}));
 });
 gulp.task('cssVendors', function () {
-    return gulp.src('src/vendors/_vendors.less')
-    .pipe(gulpLess())
+    return gulp.src('src/vendors/_vendors.scss')
+    .pipe(gulpSass())
     .pipe(gulp.dest('src/css'))
 });
 gulp.task('jsVendors', function () {
     return gulp.src([
         'src/vendors/jquery/dist/jquery.js',
     ])
-    .pipe(gulpConcat("vendors.js"))
+    .pipe(gulpConcat("_vendors.js"))
     .pipe(gulp.dest('src/script'))
 });
 gulp.task('browserSync', function () {
@@ -40,8 +40,8 @@ gulp.task('browserSync', function () {
         open: false
     });
 });
-gulp.task('watch',['browserSync', 'less', 'cssVendors', 'jsVendors'], function () {
-    gulp.watch('src/less/**/*.less', ['less']);
+gulp.task('watch',['browserSync', 'scss', 'cssVendors', 'jsVendors'], function () {
+    gulp.watch('src/scss/**/*.scss', ['scss']);
     gulp.watch('src/**/*.html', browserSync.reload);
     gulp.watch('src/script/**/*.js',[browserSync.reload]);
 });
@@ -60,7 +60,7 @@ gulp.task('img', function () {
         .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('build',['cleanDist', 'img', 'less', 'cssVendors', 'jsVendors'], function () {
+gulp.task('build',['cleanDist', 'img', 'scss', 'cssVendors', 'jsVendors'], function () {
     // css
     let buildCss = gulp.src([
         'src/css/style.css',

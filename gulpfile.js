@@ -64,7 +64,7 @@ gulp.task('build',['cleanDist', 'img', 'scss', 'cssVendors', 'jsVendors'], funct
     // css
     let buildCss = gulp.src([
         'src/css/style.css',
-        'src/css/_vendors.css',
+        'src/css/vendors.css',
     ])
         .pipe(gulpCsso())
         .pipe(gulp.dest('dist/css'));

@@ -1,5 +1,20 @@
 @media only screen and (max-width: 768px) {
+.sign {
+  .sign-box {
+    width: 100%;
+    flex-direction:column;
+    justify-content:flex-start;
 
+    .sign-form {
+      margin-top: 2rem;
+    }
+
+   .sm-position-sign-in{
+     order: -1;
+   }
+
+  }
+}
 }
 
 

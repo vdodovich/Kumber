@@ -1,6 +1,41 @@
 @import "variables";
 @import "fonts";
 
+html {
+  font-size:10px;
+}
+body {
+  font-family: Roboto;
+  font-size:1.8rem;
+}
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
+input {
+  border: 1px $green solid;
+  border-radius: 1px;
+  font-size:2rem;
+  padding-left:1rem;
+  padding-right: 1rem;
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+}
+button {
+  border-radius: 1px;
+  padding-left:2rem;
+  padding-right: 2rem;
+  padding-top:0.8rem;
+  padding-bottom: 0.8rem;
+  background-color: $green;
+  border: 0;
+  color: $whiteColor;
+  font-size: 2rem;
+}
 
+
+
+
+@import "sign";
 
 @import "media";

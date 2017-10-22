@@ -1,0 +1,67 @@
+.sign {
+  height: 100vh;
+  min-height: 600px;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+
+
+.header {
+  width: 100%;
+  height: 7vh;
+  min-height: 50px;
+  background-color: $green;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+
+  .title {
+    font-family:EXO;
+    color: $whiteColor;
+    font-size:3.8rem;
+    padding:1rem;
+    margin-top: -0.6rem;
+  }
+}
+
+.sign-box {
+  align-items: center;
+  height: 100vh;
+  min-height: 600px;
+  width: 50%;
+  display: flex;
+  justify-content:space-between;
+
+  .sign-form {
+    background-color: #fff;
+    padding: 1rem 1.8rem;
+    border: 1px $green solid;
+    display: flex;
+    flex-direction:column;
+    align-self: center;
+
+    h3 {
+      margin-top: 1rem;
+      font-size: 2.6rem;
+    }
+
+    input {
+      margin-top:2rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      margin-bottom:0.5rem;
+      font-size:1.8rem;
+      align-self: flex-start;
+
+    }
+
+  }
+}
+
+
+
+}

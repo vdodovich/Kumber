@@ -20,7 +20,7 @@ gulp.task('scss', function () {
         .pipe(browserSync.reload({stream:true}));
 });
 gulp.task('cssVendors', function () {
-    return gulp.src('src/vendors/_vendors.scss')
+    return gulp.src('src/vendors/vendors.scss')
     .pipe(gulpSass())
     .pipe(gulp.dest('src/css'))
 });
